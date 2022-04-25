@@ -119,11 +119,29 @@ public class ReportesDB {
         } 
     }
     
-     public void ReporteNotaRequisicion(int idnotarequisicion, int numnota) throws SQLException, JRException, IOException {
+    public void ReporteNotaRequisicionCompra(int idnotarequisicion, int numnota) throws SQLException, JRException, IOException {
         Connection con = this.EstablecerConexion();
         Map<String, Object> parametro = new HashMap();
         parametro.put("idnotarequisicion", idnotarequisicion);
-        String nombrearch = "Nota de Requisicion";
+        String nombrearch = "Nota de Requisicion Compra Material";
+        String rutacompleta;
+
+        try {
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("C:\\Users\\AdminSrv\\Documents\\NetBeansProjects\\RequisicionMateriales\\src\\main\\java\\Reportes\\"
+                     + nombrearch + ".jasper", parametro, con);
+            this.ExportarPDF(jasperPrintWindow, nombrearch, numnota);
+            rutacompleta = ruta + nombrearch + " " + numnota + ".pdf";
+            this.AbrirPDF(rutacompleta);
+        } catch (JRException ex) {
+             error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+    }
+    public void ReporteNotaRequisicionSalida(int idnotarequisicion, int numnota) throws SQLException, JRException, IOException {
+        Connection con = this.EstablecerConexion();
+        Map<String, Object> parametro = new HashMap();
+        parametro.put("idnotarequisicion", idnotarequisicion);
+        String nombrearch = "Nota de Requisicion Salida Material";
         String rutacompleta;
 
         try {

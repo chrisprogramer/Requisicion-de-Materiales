@@ -24,6 +24,8 @@ public class NuevaRequisicion extends javax.swing.JDialog {
 
     DefaultTableModel modelo;
     String error;
+    int coderrorsql;
+    int tiporeq;
     String seleccion;
     int tabbedfocus;
     Conexion con = new Conexion();
@@ -42,6 +44,23 @@ public class NuevaRequisicion extends javax.swing.JDialog {
             }
         }
     };
+    
+    public int retornaidtiporequisicion(String selecciontipo) {
+        try {
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornatiporequisicion ?");
+            ps.setString(1, selecciontipo);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                tiporeq = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+        return tiporeq;
+    }
 
     public NuevaRequisicion() {
 
@@ -95,7 +114,7 @@ public class NuevaRequisicion extends javax.swing.JDialog {
         setSize(new java.awt.Dimension(1229, 621));
         getContentPane().setLayout(null);
         getContentPane().add(requisicion);
-        requisicion.setBounds(500, 40, 720, 477);
+        requisicion.setBounds(500, 40, 722, 470);
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -199,35 +218,54 @@ public class NuevaRequisicion extends javax.swing.JDialog {
     private void tablebuscarmaterialMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablebuscarmaterialMouseClicked
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         int cantidad;
+        int tiporeq;
+        String selecciontiporeq;
         if (evt.getClickCount() == 2) {
             modelo = (DefaultTableModel) tablebuscarmaterial.getModel();
             modelorequisicion = (DefaultTableModel) requisicion.tablerequisicion.getModel();
             seleccion = String.valueOf(modelo.getValueAt(tablebuscarmaterial.getSelectedRow(), 0));
+            selecciontiporeq = (String) requisicion.jComboBoxtipo.getSelectedItem();
             try {
                 PreparedStatement ps = null;
                 ResultSet rs = null;
-                ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornacantexistencia ?");
-                ps.setString(1, seleccion);
+                ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornatiporequisicion ?");
+                ps.setString(1,selecciontiporeq);
                 rs = ps.executeQuery();
-                while (rs.next()) {
-                    cantidad = rs.getInt(1);
-                    if (cantidad > 0) {
-                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadatosmaterial ?");
-                        ps.setString(1, seleccion);
-                        rs = ps.executeQuery();
-                        while (rs.next()) {
-                            modelorequisicion.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(4), rs.getString(6)});
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>El Material no se Encuentra en Existencia</h3></html>", null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
+                while (rs.next()){
+                    tiporeq = rs.getInt(1);
+                    switch (tiporeq){
+                        case 1: ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadatosmaterial ?");
+                                ps.setString(1, seleccion);
+                                rs = ps.executeQuery();
+                                while (rs.next()) {
+                                    modelorequisicion.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(4), rs.getString(6)});
+                                }
+                                break;
+                        case 2: ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornacantexistencia ?");
+                                ps.setString(1, seleccion);
+                                rs = ps.executeQuery();
+                                while (rs.next()) {
+                                    cantidad = rs.getInt(1);
+                                    if (cantidad > 0) {
+                                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornadatosmaterial ?");
+                                        ps.setString(1, seleccion);
+                                        rs = ps.executeQuery();
+                                        while (rs.next()) {
+                                            modelorequisicion.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(4), rs.getString(6)});
+                                        }
+                                    }else {
+                                        JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>El Material no se Encuentra en Existencia</h3></html>", null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
+                                    }
+                                }
+                                break;
                     }
                 }
                 ps.close();
-            } catch (SQLException ex) {
+            }catch (SQLException ex) {
                 error = ex.getMessage();
                 JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
             }
-            requisicion.tablerequisicion.getSelectionModel().setSelectionInterval(1, 1);
+            requisicion.tablerequisicion.getSelectionModel().setSelectionInterval(1, 1);    
         }
         this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_tablebuscarmaterialMouseClicked
@@ -241,21 +279,29 @@ public class NuevaRequisicion extends javax.swing.JDialog {
         int numregreq;
         String fecharequisicion;
         int idrequisicion;
-        String codmaterial;
+        String codmaterial = null;
         String nommaterial;
         String medida;
+        String selecciontipo;
         double precio;
         int cant;
+        int tiporeq;
+        int restaexist = 0;
+        int cantstock = 0;
         String valida;
         int contvalida = 0;
+        int contvalidares = 0;
 
         fecharequisicion = dateformat.format(requisicion.date.getDate());
+        selecciontipo = (String) requisicion.jComboBoxtipo.getSelectedItem();
         numregreq = requisicion.tablerequisicion.getRowCount();
         modelorequisicion = (DefaultTableModel) requisicion.tablerequisicion.getModel();
+    
         Object[] textoOpciones = {"Si", "No"};
         int opc = JOptionPane.showOptionDialog(null, "<html><h3 style=font-family:Verdana New;>¿Esta Seguro que Desea Guardar el movimiento?</h3></html>",
                 null, JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, new Parametros().iconpregunta, textoOpciones, textoOpciones[0]);
         if (opc == 0) {
+            
             if (numregreq > 0) {
                 for (int i = 0; i < numregreq; i++) {
                     int j = 1;
@@ -264,74 +310,83 @@ public class NuevaRequisicion extends javax.swing.JDialog {
                         contvalida = contvalida + j;
                     }
                 }
-                if (contvalida == numregreq) {
+                tiporeq = retornaidtiporequisicion(selecciontipo);
+                if (tiporeq == 2){
                     try {
-                        PreparedStatement ps = null;
-                        ResultSet rs = null;
-                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevarequisicion ?");
-                        ps.setString(1, fecharequisicion);
-                        rs = ps.executeQuery();
-                        if (rs.next()) {
-                            try {
-                                requisicion.labelnid.setText(rs.getString(1));
-                                for (int i = 0; i < numregreq; i++) {
-                                    idrequisicion = Integer.parseInt(requisicion.labelnid.getText());
-                                    codmaterial = (String) modelorequisicion.getValueAt(i, 0);
-                                    nommaterial = (String) modelorequisicion.getValueAt(i, 1);
-                                    medida = (String) modelorequisicion.getValueAt(i, 2);
-                                    try {
-                                        precio = Double.parseDouble((String) modelorequisicion.getValueAt(i, 3));
-                                    } catch (NullPointerException ex) {
-                                        precio = 0.00;
-                                    }
-                                    cant = Integer.parseInt((String) modelorequisicion.getValueAt(i, 4));
-                                    arrayreq = new DetalleRequisicion();
-                                    arrayreq.setidrequisicion(idrequisicion);
-                                    arrayreq.setcodmaterial(codmaterial);
-                                    arrayreq.setnommaterial(nommaterial);
-                                    arrayreq.setmedida(medida);
-                                    arrayreq.setprecio(precio);
-                                    arrayreq.setcant(cant);
-                                    arrayrequisicion.add(arrayreq);
+                        for (int i = 0; i < numregreq; i++) {
+                            int j = 1;
+                            codmaterial = (String) modelorequisicion.getValueAt(i, 0);
+                            cant = Integer.parseInt((String) modelorequisicion.getValueAt(i, 4));
+                            PreparedStatement ps = null;
+                            ResultSet rs = null;
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_verificarestastock ?,?");
+                            ps.setString(1, codmaterial);
+                            ps.setInt(2, cant);
+                            rs = ps.executeQuery();
+                            while (rs.next()) {
+                                restaexist = rs.getInt(1);
+                                if (restaexist < 0){
+                                    try{
+                                       ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornacantexistencia ?");
+                                       ps.setString(1, codmaterial);
+                                       rs = ps.executeQuery();
+                                       while(rs.next()){
+                                           cantstock = rs.getInt(1);
+                                       }
+                                    }catch(SQLException ex){
+                                       error = ex.getMessage();
+                                       JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                    } 
+                                    JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>El Código: " + codmaterial + " solo tiene " + cantstock + " en existencia </h3></html>",
+                                            null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia); 
+                                }else{
+                                    contvalidares = contvalidares + j;
                                 }
+                            }
+                        }
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                    }
+                }else{
+                    contvalidares = numregreq;
+                }            
+                if (contvalida == numregreq) {
+                    if(contvalidares == numregreq){
+                        try {
+                            PreparedStatement ps = null;
+                            ResultSet rs = null;
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevarequisicion ?,?");
+                            ps.setString(1, fecharequisicion);
+                            ps.setString(2, selecciontipo);
+                            rs = ps.executeQuery();
+                            if (rs.next()) {
                                 try {
-                                    ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotarequisicion ?,?,?");
-                                    ps.setString(1, fecharequisicion);
-                                    ps.setString(2, (String) requisicion.jComboBoxdpto.getSelectedItem());
-                                    ps.setInt(3, Integer.parseInt(requisicion.labelnid.getText()));
-                                    rs = ps.executeQuery();
-                                    while (rs.next()) {
-                                        //
-                                    }
-                                } catch (java.sql.SQLException ex) {
-                                    error = ex.getMessage();
-                                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                                }
-                                for (int i = 0; i < arrayrequisicion.size(); i++) {
-                                    try {
-                                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallerequisicion ?,?,?,?,?,?");
-                                        ps.setInt(1, arrayrequisicion.get(i).getidrequisicion());
-                                        ps.setString(2, arrayrequisicion.get(i).getcodmaterial());
-                                        ps.setString(3, arrayrequisicion.get(i).getnommaterial());
-                                        ps.setString(4, arrayrequisicion.get(i).getmedida());
-                                        ps.setDouble(5, arrayrequisicion.get(i).getprecio());
-                                        ps.setInt(6, arrayrequisicion.get(i).getcant());
-                                        rs = ps.executeQuery();
-                                        while (rs.next()) {
-                                            //
+                                    requisicion.labelnid.setText(rs.getString(1));
+                                    for (int i = 0; i < numregreq; i++) {
+                                        idrequisicion = Integer.parseInt(requisicion.labelnid.getText());
+                                        codmaterial = (String) modelorequisicion.getValueAt(i, 0);
+                                        nommaterial = (String) modelorequisicion.getValueAt(i, 1);
+                                        medida = (String) modelorequisicion.getValueAt(i, 2);
+                                        try {
+                                            precio = Double.parseDouble((String) modelorequisicion.getValueAt(i, 3));
+                                        } catch (NullPointerException ex) {
+                                            precio = 0.00;
                                         }
-                                    } catch (SQLException ex) {
-                                        error = ex.getMessage();
-                                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                        cant = Integer.parseInt((String) modelorequisicion.getValueAt(i, 4));
+                                        arrayreq = new DetalleRequisicion();
+                                        arrayreq.setidrequisicion(idrequisicion);
+                                        arrayreq.setcodmaterial(codmaterial);
+                                        arrayreq.setnommaterial(nommaterial);
+                                        arrayreq.setmedida(medida);
+                                        arrayreq.setprecio(precio);
+                                        arrayreq.setcant(cant);
+                                        arrayrequisicion.add(arrayreq);
                                     }
-                                }
-                                for (int i = 0; i < arrayrequisicion.size(); i++) {
                                     try {
-                                        ps = con.EstablecerConexion().prepareStatement("spu_guardadetallesnotarequisicion ?,?,?,?");
-                                        ps.setString(1, arrayrequisicion.get(i).getcodmaterial());
-                                        ps.setString(2, arrayrequisicion.get(i).getmedida());
-                                        ps.setDouble(3, arrayrequisicion.get(i).getprecio());
-                                        ps.setInt(4, arrayrequisicion.get(i).getcant());
+                                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevanotarequisicion ?,?,?");
+                                        ps.setString(1, fecharequisicion);
+                                        ps.setString(2, (String) requisicion.jComboBoxdpto.getSelectedItem());
+                                        ps.setInt(3, Integer.parseInt(requisicion.labelnid.getText()));
                                         rs = ps.executeQuery();
                                         while (rs.next()) {
                                             //
@@ -340,26 +395,70 @@ public class NuevaRequisicion extends javax.swing.JDialog {
                                         error = ex.getMessage();
                                         JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                                     }
+                                    for (int i = 0; i < arrayrequisicion.size(); i++) {
+                                        try {
+                                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallerequisicion ?,?,?,?,?,?");
+                                            ps.setInt(1, arrayrequisicion.get(i).getidrequisicion());
+                                            ps.setString(2, arrayrequisicion.get(i).getcodmaterial());
+                                            ps.setString(3, arrayrequisicion.get(i).getnommaterial());
+                                            ps.setString(4, arrayrequisicion.get(i).getmedida());
+                                            ps.setDouble(5, arrayrequisicion.get(i).getprecio());
+                                            ps.setInt(6, arrayrequisicion.get(i).getcant());
+                                            rs = ps.executeQuery();
+                                            while (rs.next()) {
+                                                //
+                                            }
+                                        } catch (SQLException ex) {
+                                            error = ex.getMessage();
+                                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                        }
+                                    }
+                                    for (int i = 0; i < arrayrequisicion.size(); i++) {
+                                        try {
+                                            ps = con.EstablecerConexion().prepareStatement("spu_guardadetallesnotarequisicion ?,?,?,?");
+                                            ps.setString(1, arrayrequisicion.get(i).getcodmaterial());
+                                            ps.setString(2, arrayrequisicion.get(i).getmedida());
+                                            ps.setDouble(3, arrayrequisicion.get(i).getprecio());
+                                            ps.setInt(4, arrayrequisicion.get(i).getcant());
+                                            rs = ps.executeQuery();
+                                            while (rs.next()) {
+                                                //
+                                            }
+                                        } catch (java.sql.SQLException ex) {
+                                            error = ex.getMessage();
+                                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                        }
+                                    }
+                                    JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Requisición Generada con Exito </h3></html>",
+                                            null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
+                                    tiporeq = retornaidtiporequisicion(selecciontipo);
+                                            switch(tiporeq){
+                                                case 1: try {
+                                                            reportesalmacen.ReporteNotaRequisicionCompra(Integer.parseInt(requisicion.labelnid.getText()), Integer.parseInt(requisicion.labelnid.getText()));
+                                                        } catch (JRException | IOException ex) {
+                                                            Logger.getLogger(NuevaRequisicion.class.getName()).log(Level.SEVERE, null, ex);
+                                                        }
+                                                        break;
+                                                case 2: try{
+                                                            reportesalmacen.ReporteNotaRequisicionSalida(Integer.parseInt(requisicion.labelnid.getText()), Integer.parseInt(requisicion.labelnid.getText()));
+                                                        }catch (JRException | IOException ex) {
+                                                            Logger.getLogger(NuevaRequisicion.class.getName()).log(Level.SEVERE, null, ex);
+                                                        }
+                                                        break;
+                                            }
+                                } catch (SQLException ex) {
+                                    error = ex.getMessage();
+                                    JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                                 }
-                                JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Requisición Generada con Exito </h3></html>",
-                                        null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
-                                try {
-                                    reportesalmacen.ReporteNotaRequisicion(Integer.parseInt(requisicion.labelnid.getText()), Integer.parseInt(requisicion.labelnid.getText()));
-                                } catch (JRException | IOException ex) {
-                                    Logger.getLogger(NuevaRequisicion.class.getName()).log(Level.SEVERE, null, ex);
-                                }
-                            } catch (SQLException ex) {
-                                error = ex.getMessage();
-                                JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                ps.close();
                             }
-                            ps.close();
+                        } catch (SQLException ex) {
+                            error = ex.getMessage();
+                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                         }
-                    } catch (SQLException ex) {
-                        error = ex.getMessage();
-                        JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
-                    }
-                    modelorequisicion.setRowCount(0);
-                    requisicion.labelnid.setText("");
+                        modelorequisicion.setRowCount(0);
+                        requisicion.labelnid.setText("");
+                }    
                 } else {
                     JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Ingrese una Cantidad Valida y Mayor a 0</h3></html>", null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
                 }

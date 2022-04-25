@@ -25,11 +25,11 @@
 	<title>
 		<band height="48" splitType="Stretch">
 			<staticText>
-				<reportElement x="160" y="1" width="227" height="38" uuid="90df63a9-5af6-49f4-bf41-0cb790b3e462"/>
+				<reportElement x="122" y="10" width="316" height="38" uuid="90df63a9-5af6-49f4-bf41-0cb790b3e462"/>
 				<textElement>
 					<font fontName="Arial" size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Requisición de Materiales]]></text>
+				<text><![CDATA[Requisición de Salida de Materiales]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="453" y="1" width="23" height="15" uuid="905c170f-eeb0-4dc0-8d99-93c91dfab233"/>
