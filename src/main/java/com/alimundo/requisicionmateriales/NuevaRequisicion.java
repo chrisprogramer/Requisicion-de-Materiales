@@ -355,9 +355,10 @@ public class NuevaRequisicion extends javax.swing.JDialog {
                         try {
                             PreparedStatement ps = null;
                             ResultSet rs = null;
-                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevarequisicion ?,?");
+                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_nuevarequisicion ?,?,?");
                             ps.setString(1, fecharequisicion);
                             ps.setString(2, selecciontipo);
+                            ps.setString(3, (String) requisicion.jComboBoxdpto.getSelectedItem());
                             rs = ps.executeQuery();
                             if (rs.next()) {
                                 try {
