@@ -16,7 +16,7 @@ public class Parametros {
     String errorsql;
     
     public Image getIconImagePrincipalForm(){
-        Image refValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("Imagenes/requerido.png"));
+        Image refValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("pngs48X48/clipboard_paper_file_correct_done_list_document_icon_219488.png"));
         return refValue;
     }
 

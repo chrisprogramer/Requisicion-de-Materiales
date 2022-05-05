@@ -68,8 +68,6 @@ public class NuevaRequisicion extends javax.swing.JDialog {
         UIManager.put("Panel.background", Color.WHITE);
 
         initComponents();
-        setTitle("MOVIMIENTOS DE ALMACÉN");
-        setSize(1229, 621);
         setResizable(false);
         setLayout(null);
         setLocationRelativeTo(null);
@@ -96,30 +94,49 @@ public class NuevaRequisicion extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelcerrar = new javax.swing.JLabel();
         requisicion = new Paneles.Requisicion();
+        labeltitulo = new javax.swing.JLabel();
         panelopciones = new javax.swing.JPanel();
         textfieldbuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablebuscarmaterial = new javax.swing.JTable();
-        labelaceptar = new javax.swing.JLabel();
         botonaceptar = new javax.swing.JButton();
-        labelcerrar = new javax.swing.JLabel();
         labelbuscar = new javax.swing.JLabel();
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(1229, 621));
+        setMaximumSize(new java.awt.Dimension(1229, 473));
+        setMinimumSize(new java.awt.Dimension(1229, 473));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
-        setSize(new java.awt.Dimension(1229, 621));
+        setSize(new java.awt.Dimension(1229, 473));
         getContentPane().setLayout(null);
+
+        labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
+        labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelcerrarMouseClicked(evt);
+            }
+        });
+        getContentPane().add(labelcerrar);
+        labelcerrar.setBounds(1190, 4, 32, 32);
         getContentPane().add(requisicion);
-        requisicion.setBounds(500, 40, 722, 470);
+        requisicion.setBounds(500, 40, 722, 360);
+
+        labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
+        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
+        labeltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labeltitulo.setText(" GENERAR REQUISICION");
+        labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labeltitulo.setOpaque(true);
+        getContentPane().add(labeltitulo);
+        labeltitulo.setBounds(0, 0, 1230, 40);
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(panelopciones);
-        panelopciones.setBounds(0, 0, 30, 878);
+        panelopciones.setBounds(0, 40, 30, 430);
 
         textfieldbuscar.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         textfieldbuscar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -129,7 +146,7 @@ public class NuevaRequisicion extends javax.swing.JDialog {
             }
         });
         getContentPane().add(textfieldbuscar);
-        textfieldbuscar.setBounds(40, 120, 450, 30);
+        textfieldbuscar.setBounds(40, 166, 450, 30);
 
         tablebuscarmaterial.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
@@ -143,14 +160,9 @@ public class NuevaRequisicion extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tablebuscarmaterial);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(40, 160, 452, 350);
+        jScrollPane1.setBounds(40, 200, 452, 190);
 
-        labelaceptar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        labelaceptar.setText("Aceptar");
-        getContentPane().add(labelaceptar);
-        labelaceptar.setBounds(1154, 595, 60, 16);
-
-        botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs64X64/verificar.png"))); // NOI18N
+        botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/accept_allow_admit_okay_icon_141954.png"))); // NOI18N
         botonaceptar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         botonaceptar.setOpaque(false);
         botonaceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -159,29 +171,19 @@ public class NuevaRequisicion extends javax.swing.JDialog {
             }
         });
         getContentPane().add(botonaceptar);
-        botonaceptar.setBounds(1140, 515, 80, 80);
+        botonaceptar.setBounds(1160, 400, 60, 60);
 
-        labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
-        labelcerrar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                labelcerrarMouseClicked(evt);
-            }
-        });
-        getContentPane().add(labelcerrar);
-        labelcerrar.setBounds(1180, 4, 32, 40);
-
-        labelbuscar.setBackground(new java.awt.Color(0, 153, 204));
+        labelbuscar.setBackground(new java.awt.Color(255, 255, 255));
         labelbuscar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelbuscar.setText("Buscar Material");
         labelbuscar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        labelbuscar.setOpaque(true);
         getContentPane().add(labelbuscar);
-        labelbuscar.setBounds(40, 90, 140, 20);
+        labelbuscar.setBounds(40, 140, 140, 20);
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(labelfondo);
-        labelfondo.setBounds(30, 0, 1200, 620);
+        labelfondo.setBounds(30, 0, 1200, 470);
 
         getAccessibleContext().setAccessibleDescription("");
 
@@ -284,13 +286,14 @@ public class NuevaRequisicion extends javax.swing.JDialog {
         String medida;
         String selecciontipo;
         double precio;
-        int cant;
+        int cant = 0;
         int tiporeq;
         int restaexist = 0;
         int cantstock = 0;
         String valida;
         int contvalida = 0;
         int contvalidares = 0;
+        Boolean nulo = false;
 
         fecharequisicion = dateformat.format(requisicion.date.getDate());
         selecciontipo = (String) requisicion.jComboBoxtipo.getSelectedItem();
@@ -316,7 +319,11 @@ public class NuevaRequisicion extends javax.swing.JDialog {
                         for (int i = 0; i < numregreq; i++) {
                             int j = 1;
                             codmaterial = (String) modelorequisicion.getValueAt(i, 0);
-                            cant = Integer.parseInt((String) modelorequisicion.getValueAt(i, 4));
+                            try{
+                                cant = Integer.parseInt((String) modelorequisicion.getValueAt(i, 4));
+                            }catch(NumberFormatException nfe){
+                                nulo = true;
+                            }    
                             PreparedStatement ps = null;
                             ResultSet rs = null;
                             ps = con.EstablecerConexion().prepareStatement("EXEC spu_verificarestastock ?,?");
@@ -350,7 +357,7 @@ public class NuevaRequisicion extends javax.swing.JDialog {
                 }else{
                     contvalidares = numregreq;
                 }            
-                if (contvalida == numregreq) {
+                if (contvalida == numregreq && !nulo) {
                     if(contvalidares == numregreq){
                         try {
                             PreparedStatement ps = null;
@@ -459,7 +466,7 @@ public class NuevaRequisicion extends javax.swing.JDialog {
                         }
                         modelorequisicion.setRowCount(0);
                         requisicion.labelnid.setText("");
-                }    
+                    }    
                 } else {
                     JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Ingrese una Cantidad Valida y Mayor a 0</h3></html>", null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconadvertencia);
                 }
@@ -508,10 +515,10 @@ public class NuevaRequisicion extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonaceptar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelaceptar;
     private javax.swing.JLabel labelbuscar;
     private javax.swing.JLabel labelcerrar;
     private javax.swing.JLabel labelfondo;
+    private javax.swing.JLabel labeltitulo;
     private javax.swing.JPanel panelopciones;
     private Paneles.Requisicion requisicion;
     private javax.swing.JTable tablebuscarmaterial;

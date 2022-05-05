@@ -5,13 +5,13 @@
 package com.alimundo.requisicionmateriales;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Point;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -28,6 +28,7 @@ public class Principal extends javax.swing.JFrame {
     String error;
     Menus BarMenu;
     JMenuBar mainmenu;
+    public static int idreq;
     
     public Principal() {
         
@@ -37,12 +38,12 @@ public class Principal extends javax.swing.JFrame {
         UIManager.put("OptionPane.background", Color.WHITE);
         UIManager.put("Panel.background", Color.WHITE);
         
-        Reloj reloj = new Reloj(655,370,140,20);
+        Reloj reloj = new Reloj(655,463,140,20);
         reloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         reloj.setFont(new java.awt.Font(letra,1,16));
         add(reloj);
         
-        Fecha fecha = new Fecha(10,370,180,20);
+        Fecha fecha = new Fecha(10,463,180,20);
         fecha.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         fecha.setFont(new java.awt.Font(letra,1,16));
         add(fecha); 
@@ -56,10 +57,10 @@ public class Principal extends javax.swing.JFrame {
         
         icono = new Parametros().getIconImagePrincipalForm();
         setIconImage(icono);
-        mainmenu = BarMenu.CreaMenuPrincipal();
+        //mainmenu = BarMenu.CreaMenuPrincipal();
         //mainmenu.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        mainmenu.setBackground(Color.red);
-        setJMenuBar(mainmenu);
+        //mainmenu.setBackground(Color.red);
+        //setJMenuBar(mainmenu);
         
          try{
             PreparedStatement ps = null;
@@ -89,6 +90,12 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelicono = new javax.swing.JLabel();
+        labeltitulo = new javax.swing.JLabel();
+        botonsalir = new javax.swing.JButton();
+        botonnuevarequisicion = new javax.swing.JButton();
+        botoneditarequisicion = new javax.swing.JButton();
+        botonayuda = new javax.swing.JButton();
         labelempresa = new javax.swing.JLabel();
         verbd = new javax.swing.JLabel();
         labelnbd = new javax.swing.JLabel();
@@ -100,38 +107,110 @@ public class Principal extends javax.swing.JFrame {
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        labelicono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/clipboard_paper_file_correct_done_list_document_icon_219488.png"))); // NOI18N
+        getContentPane().add(labelicono, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
+        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
+        labeltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labeltitulo.setText("MODULO REQUISICIÓN DE MATERIALES");
+        labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        labeltitulo.setOpaque(true);
+        getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 50));
+
+        botonsalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/power_on_off_switch_exit_icon_141963.png"))); // NOI18N
+        botonsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonsalirActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 60, 60));
+
+        botonnuevarequisicion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/add_paper_plus_insert_append_incorporate_icon_141955.png"))); // NOI18N
+        botonnuevarequisicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonnuevarequisicionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonnuevarequisicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 60, 60));
+
+        botoneditarequisicion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/edit_pencil_paper_modify_write_icon_141958.png"))); // NOI18N
+        botoneditarequisicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botoneditarequisicionActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botoneditarequisicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 60, 60));
+
+        botonayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/Help_icon-icons.com_55891.png"))); // NOI18N
+        botonayuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonayudaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(botonayuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 60, 60));
 
         labelempresa.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
         labelempresa.setText("Empresa:");
-        getContentPane().add(labelempresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 395, -1, -1));
+        getContentPane().add(labelempresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 463, -1, -1));
 
         verbd.setFont(new java.awt.Font("Verdana", 0, 16)); // NOI18N
         verbd.setText("Ver. Base de Datos:");
-        getContentPane().add(verbd, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 395, -1, -1));
+        getContentPane().add(verbd, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 463, -1, -1));
 
         labelnbd.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         labelnbd.setPreferredSize(new java.awt.Dimension(10, 10));
-        getContentPane().add(labelnbd, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 395, 80, 20));
+        getContentPane().add(labelnbd, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 463, 80, 20));
 
         labelnomempresa.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
         labelnomempresa.setPreferredSize(new java.awt.Dimension(10, 10));
-        getContentPane().add(labelnomempresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 395, 140, 20));
+        getContentPane().add(labelnomempresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 463, 140, 20));
 
         labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LOGO ALIMUNDO PEQUE.png"))); // NOI18N
-        getContentPane().add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 420, 110));
+        getContentPane().add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 420, 110));
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 30, 505));
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 800, 10));
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 800, 10));
+        getContentPane().add(panelopciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 35, 30, 470));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 460, 800, 10));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 800, 10));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 505));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botonsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonsalirActionPerformed
+        this.setCursor(new Cursor (Cursor.WAIT_CURSOR));
+        Object[] textoOpciones = {"Si","No"};
+        int opc = JOptionPane.showOptionDialog(this,"<html><h3 style=font-family:Verdana;>¿Desea salir del Modulo Requisición?</h3></html>",
+            "",JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, new Parametros().iconpregunta, textoOpciones, textoOpciones[0]);
+        if (opc == 0)
+            System.exit(0);
+        this.setCursor(new Cursor (Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botonsalirActionPerformed
+
+    private void botonnuevarequisicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonnuevarequisicionActionPerformed
+        new Principal().setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        new NuevaRequisicion().setVisible(true);
+        new Principal().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botonnuevarequisicionActionPerformed
+
+    private void botonayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonayudaActionPerformed
+        new Principal().setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        new Ayuda().setVisible(true);
+        new Principal().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botonayudaActionPerformed
+
+    private void botoneditarequisicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoneditarequisicionActionPerformed
+        new Principal().setCursor(new Cursor(Cursor.WAIT_CURSOR));
+        new EditarRequisicion().setVisible(true);
+        new Principal().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_botoneditarequisicionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,13 +247,19 @@ public class Principal extends javax.swing.JFrame {
         });
     }        
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonayuda;
+    private javax.swing.JButton botoneditarequisicion;
+    private javax.swing.JButton botonnuevarequisicion;
+    private javax.swing.JButton botonsalir;
     private javax.swing.JLabel fondo;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel labelempresa;
+    private javax.swing.JLabel labelicono;
     private javax.swing.JLabel labellogo;
     private javax.swing.JLabel labelnbd;
     private javax.swing.JLabel labelnomempresa;
+    private javax.swing.JLabel labeltitulo;
     private javax.swing.JPanel panelopciones;
     private javax.swing.JLabel verbd;
     // End of variables declaration//GEN-END:variables

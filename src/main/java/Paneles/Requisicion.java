@@ -36,7 +36,7 @@ public class Requisicion extends javax.swing.JPanel {
     
     public Requisicion() {
         initComponents();
-         modelorequisicion.setColumnIdentifiers(new Object[]{"","","","",""});
+        modelorequisicion.setColumnIdentifiers(new Object[]{"","","","",""});
 
         if (tablerequisicion.getColumnModel().getColumnCount() > 0) {
 
@@ -84,7 +84,6 @@ public class Requisicion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labeltitulo = new javax.swing.JLabel();
         labelnid = new javax.swing.JLabel();
         labelid = new javax.swing.JLabel();
         labeldepartamento = new javax.swing.JLabel();
@@ -99,10 +98,6 @@ public class Requisicion extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        labeltitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
-        labeltitulo.setText("Nueva Requisición");
-        add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 10, 210, -1));
-
         labelnid.setBackground(new java.awt.Color(255, 255, 255));
         labelnid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelnid.setForeground(new java.awt.Color(255, 0, 0));
@@ -110,48 +105,44 @@ public class Requisicion extends javax.swing.JPanel {
         labelnid.setEnabled(false);
         labelnid.setFocusable(false);
         labelnid.setOpaque(true);
-        add(labelnid, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 50, 40));
+        add(labelnid, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 50, 40));
 
-        labelid.setBackground(new java.awt.Color(0, 153, 204));
+        labelid.setBackground(new java.awt.Color(255, 255, 255));
         labelid.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelid.setText("ID Requisición");
         labelid.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        labelid.setOpaque(true);
-        add(labelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 46, -1, -1));
+        add(labelid, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
-        labeldepartamento.setBackground(new java.awt.Color(0, 153, 204));
+        labeldepartamento.setBackground(new java.awt.Color(255, 255, 255));
         labeldepartamento.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labeldepartamento.setText("Solicita");
         labeldepartamento.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labeldepartamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        labeldepartamento.setOpaque(true);
-        add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 46, -1, -1));
+        add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
 
-        labeltipo.setBackground(new java.awt.Color(0, 153, 204));
+        labeltipo.setBackground(new java.awt.Color(255, 255, 255));
         labeltipo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labeltipo.setText(" Tipo de Requisición");
         labeltipo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        labeltipo.setOpaque(true);
-        add(labeltipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+        add(labeltipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         jComboBoxdpto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        add(jComboBoxdpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 260, 30));
+        add(jComboBoxdpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 260, 30));
 
         jComboBoxtipo.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        add(jComboBoxtipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 144, 260, 30));
+        add(jComboBoxtipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 260, 30));
 
-        labelfecha.setBackground(new java.awt.Color(0, 153, 204));
+        labelfecha.setBackground(new java.awt.Color(255, 255, 255));
         labelfecha.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelfecha.setText("Fecha de Solicitud");
         labelfecha.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labelfecha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        labelfecha.setOpaque(true);
-        add(labelfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 46, -1, -1));
+        add(labelfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, -1, -1));
 
         date.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         date.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         date.setOpaque(false);
-        add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 70, 210, 30));
+        add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 210, 30));
 
         tablerequisicion.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tablerequisicion.setModel(modelorequisicion);
@@ -162,10 +153,10 @@ public class Requisicion extends javax.swing.JPanel {
         });
         jScrollPane.setViewportView(tablerequisicion);
 
-        add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 720, 290));
+        add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 720, 190));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 722, 470));
+        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 722, 360));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablerequisicionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablerequisicionKeyPressed
@@ -191,7 +182,6 @@ public class Requisicion extends javax.swing.JPanel {
     private javax.swing.JLabel labelid;
     public javax.swing.JLabel labelnid;
     private javax.swing.JLabel labeltipo;
-    private javax.swing.JLabel labeltitulo;
     public javax.swing.JTable tablerequisicion;
     // End of variables declaration//GEN-END:variables
 }
