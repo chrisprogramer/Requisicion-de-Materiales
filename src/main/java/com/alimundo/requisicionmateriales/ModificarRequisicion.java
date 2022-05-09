@@ -471,7 +471,7 @@ public class ModificarRequisicion extends javax.swing.JDialog {
                                     }
                                     for (int i = 0; i < arrayrequisicion.size(); i++) {
                                         try {
-                                            ps = con.EstablecerConexion().prepareStatement(" EXCE spu_modificadetallesnotarequisicion ?,?,?,?,?");
+                                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_modificadetallesnotarequisicion ?,?,?,?,?");
                                             ps.setInt(1, Integer.parseInt(this.labelnid.getText()));
                                             ps.setString(2, arrayrequisicion.get(i).getcodmaterial());
                                             ps.setString(3, arrayrequisicion.get(i).getmedida());
@@ -482,8 +482,9 @@ public class ModificarRequisicion extends javax.swing.JDialog {
                                                 //
                                             }
                                         } catch (java.sql.SQLException ex) {
-                                            error = ex.getMessage();
-                                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+                                            ex.printStackTrace();
+                                            /*error = ex.getMessage();
+                                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);*/
                                         }
                                     }
                                     JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Requisición Modificada con Exito </h3></html>",
