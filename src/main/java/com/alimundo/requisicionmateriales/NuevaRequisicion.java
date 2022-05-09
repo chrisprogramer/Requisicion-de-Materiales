@@ -76,13 +76,13 @@ public class NuevaRequisicion extends javax.swing.JDialog {
         if (tablebuscarmaterial.getColumnModel().getColumnCount() > 0) {
 
             tablebuscarmaterial.getColumnModel().getColumn(0).setHeaderValue("<html><h3 style=font-family:Verdana;>Codigo</h3></html>");
-            tablebuscarmaterial.getColumnModel().getColumn(0).setPreferredWidth(250);
-            tablebuscarmaterial.getColumnModel().getColumn(0).setMaxWidth(250);
+            tablebuscarmaterial.getColumnModel().getColumn(0).setPreferredWidth(150);
+            tablebuscarmaterial.getColumnModel().getColumn(0).setMaxWidth(150);
             tablebuscarmaterial.getColumnModel().getColumn(0).setResizable(false);
 
             tablebuscarmaterial.getColumnModel().getColumn(1).setHeaderValue("<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>");
-            tablebuscarmaterial.getColumnModel().getColumn(1).setPreferredWidth(900);
-            tablebuscarmaterial.getColumnModel().getColumn(1).setMaxWidth(900);
+            tablebuscarmaterial.getColumnModel().getColumn(1).setPreferredWidth(400);
+            tablebuscarmaterial.getColumnModel().getColumn(1).setMaxWidth(400);
             tablebuscarmaterial.getColumnModel().getColumn(1).setResizable(false);
         }
         tablebuscarmaterial.getTableHeader().setReorderingAllowed(false);
@@ -99,18 +99,18 @@ public class NuevaRequisicion extends javax.swing.JDialog {
         labeltitulo = new javax.swing.JLabel();
         panelopciones = new javax.swing.JPanel();
         textfieldbuscar = new javax.swing.JTextField();
+        botonaceptar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablebuscarmaterial = new javax.swing.JTable();
-        botonaceptar = new javax.swing.JButton();
         labelbuscar = new javax.swing.JLabel();
         labelfondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1229, 473));
-        setMinimumSize(new java.awt.Dimension(1229, 473));
+        setMaximumSize(new java.awt.Dimension(989, 473));
+        setMinimumSize(new java.awt.Dimension(989, 473));
         setModalityType(java.awt.Dialog.ModalityType.APPLICATION_MODAL);
         setUndecorated(true);
-        setSize(new java.awt.Dimension(1229, 473));
+        setSize(new java.awt.Dimension(989, 473));
         getContentPane().setLayout(null);
 
         labelcerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs32X32/cancel.png"))); // NOI18N
@@ -120,9 +120,9 @@ public class NuevaRequisicion extends javax.swing.JDialog {
             }
         });
         getContentPane().add(labelcerrar);
-        labelcerrar.setBounds(1190, 4, 32, 32);
+        labelcerrar.setBounds(950, 4, 32, 32);
         getContentPane().add(requisicion);
-        requisicion.setBounds(500, 40, 722, 360);
+        requisicion.setBounds(410, 40, 571, 360);
 
         labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
@@ -131,7 +131,7 @@ public class NuevaRequisicion extends javax.swing.JDialog {
         labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labeltitulo.setOpaque(true);
         getContentPane().add(labeltitulo);
-        labeltitulo.setBounds(0, 0, 1230, 40);
+        labeltitulo.setBounds(0, 0, 990, 40);
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -146,21 +146,7 @@ public class NuevaRequisicion extends javax.swing.JDialog {
             }
         });
         getContentPane().add(textfieldbuscar);
-        textfieldbuscar.setBounds(40, 166, 450, 30);
-
-        tablebuscarmaterial.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        tablebuscarmaterial.setModel(modelobusqueda);
-        tablebuscarmaterial.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        tablebuscarmaterial.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablebuscarmaterialMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tablebuscarmaterial);
-
-        getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(40, 200, 452, 190);
+        textfieldbuscar.setBounds(40, 166, 360, 30);
 
         botonaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/accept_allow_admit_okay_icon_141954.png"))); // NOI18N
         botonaceptar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -171,7 +157,21 @@ public class NuevaRequisicion extends javax.swing.JDialog {
             }
         });
         getContentPane().add(botonaceptar);
-        botonaceptar.setBounds(1160, 400, 60, 60);
+        botonaceptar.setBounds(920, 400, 60, 60);
+
+        tablebuscarmaterial.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        tablebuscarmaterial.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tablebuscarmaterial.setModel(modelobusqueda);
+        tablebuscarmaterial.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tablebuscarmaterial.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablebuscarmaterialMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablebuscarmaterial);
+
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(40, 200, 360, 190);
 
         labelbuscar.setBackground(new java.awt.Color(255, 255, 255));
         labelbuscar.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
@@ -183,7 +183,7 @@ public class NuevaRequisicion extends javax.swing.JDialog {
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
         labelfondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         getContentPane().add(labelfondo);
-        labelfondo.setBounds(30, 0, 1200, 470);
+        labelfondo.setBounds(30, 0, 960, 470);
 
         getAccessibleContext().setAccessibleDescription("");
 
@@ -301,10 +301,9 @@ public class NuevaRequisicion extends javax.swing.JDialog {
         modelorequisicion = (DefaultTableModel) requisicion.tablerequisicion.getModel();
     
         Object[] textoOpciones = {"Si", "No"};
-        int opc = JOptionPane.showOptionDialog(null, "<html><h3 style=font-family:Verdana New;>¿Esta Seguro que Desea Guardar el movimiento?</h3></html>",
+        int opc = JOptionPane.showOptionDialog(null, "<html><h3 style=font-family:Verdana New;>¿Esta Seguro que Desea Generar la Requisición?</h3></html>",
                 null, JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, new Parametros().iconpregunta, textoOpciones, textoOpciones[0]);
         if (opc == 0) {
-            
             if (numregreq > 0) {
                 for (int i = 0; i < numregreq; i++) {
                     int j = 1;
@@ -423,7 +422,7 @@ public class NuevaRequisicion extends javax.swing.JDialog {
                                     }
                                     for (int i = 0; i < arrayrequisicion.size(); i++) {
                                         try {
-                                            ps = con.EstablecerConexion().prepareStatement("spu_guardadetallesnotarequisicion ?,?,?,?");
+                                            ps = con.EstablecerConexion().prepareStatement("EXEC spu_guardadetallesnotarequisicion ?,?,?,?");
                                             ps.setString(1, arrayrequisicion.get(i).getcodmaterial());
                                             ps.setString(2, arrayrequisicion.get(i).getmedida());
                                             ps.setDouble(3, arrayrequisicion.get(i).getprecio());

@@ -41,23 +41,23 @@ public class Requisicion extends javax.swing.JPanel {
         if (tablerequisicion.getColumnModel().getColumnCount() > 0) {
 
             tablerequisicion.getColumnModel().getColumn(0).setHeaderValue("<html><h3 style=font-family:Verdana;>Codigo</h3></html>");
-            tablerequisicion.getColumnModel().getColumn(0).setPreferredWidth(200);
-            tablerequisicion.getColumnModel().getColumn(0).setMaxWidth(200);
+            tablerequisicion.getColumnModel().getColumn(0).setPreferredWidth(150);
+            tablerequisicion.getColumnModel().getColumn(0).setMaxWidth(150);
             tablerequisicion.getColumnModel().getColumn(0).setResizable(false);
             
             tablerequisicion.getColumnModel().getColumn(1).setHeaderValue("<html><h3 style=font-family:Verdana;>Nombre Material</h3></html>");
-            tablerequisicion.getColumnModel().getColumn(1).setPreferredWidth(700);
-            tablerequisicion.getColumnModel().getColumn(1).setMaxWidth(700);
+            tablerequisicion.getColumnModel().getColumn(1).setPreferredWidth(400);
+            tablerequisicion.getColumnModel().getColumn(1).setMaxWidth(400);
             tablerequisicion.getColumnModel().getColumn(1).setResizable(false);
 
             tablerequisicion.getColumnModel().getColumn(2).setHeaderValue("<html><h3 style=font-family:Verdana;>Medida</h3></html>");
-            tablerequisicion.getColumnModel().getColumn(2).setPreferredWidth(180);
-            tablerequisicion.getColumnModel().getColumn(2).setMaxWidth(180);
+            tablerequisicion.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tablerequisicion.getColumnModel().getColumn(2).setMaxWidth(150);
             tablerequisicion.getColumnModel().getColumn(2).setResizable(false);
             
             tablerequisicion.getColumnModel().getColumn(3).setHeaderValue("<html><h3 style=font-family:Verdana;>Precio</h3></html>");
-            tablerequisicion.getColumnModel().getColumn(3).setPreferredWidth(130);
-            tablerequisicion.getColumnModel().getColumn(3).setMaxWidth(130);
+            tablerequisicion.getColumnModel().getColumn(3).setPreferredWidth(150);
+            tablerequisicion.getColumnModel().getColumn(3).setMaxWidth(150);
             tablerequisicion.getColumnModel().getColumn(3).setResizable(false);
             
             tablerequisicion.getColumnModel().getColumn(4).setHeaderValue("<html><h3 style=font-family:Verdana;>Cant.</h3></html>");
@@ -96,6 +96,9 @@ public class Requisicion extends javax.swing.JPanel {
         tablerequisicion = new javax.swing.JTable();
         labelfondo = new javax.swing.JLabel();
 
+        setMaximumSize(new java.awt.Dimension(571, 360));
+        setMinimumSize(new java.awt.Dimension(571, 360));
+        setPreferredSize(new java.awt.Dimension(571, 360));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         labelnid.setBackground(new java.awt.Color(255, 255, 255));
@@ -118,31 +121,31 @@ public class Requisicion extends javax.swing.JPanel {
         labeldepartamento.setText("Solicita");
         labeldepartamento.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labeldepartamento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, -1, -1));
+        add(labeldepartamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, -1, -1));
 
         labeltipo.setBackground(new java.awt.Color(255, 255, 255));
         labeltipo.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labeltipo.setText(" Tipo de Requisición");
         labeltipo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        add(labeltipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        add(labeltipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
 
         jComboBoxdpto.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        add(jComboBoxdpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 40, 260, 30));
+        add(jComboBoxdpto, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 40, 260, 30));
 
         jComboBoxtipo.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        add(jComboBoxtipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 260, 30));
+        add(jComboBoxtipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 260, 30));
 
         labelfecha.setBackground(new java.awt.Color(255, 255, 255));
         labelfecha.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         labelfecha.setText("Fecha de Solicitud");
         labelfecha.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         labelfecha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        add(labelfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 20, -1, -1));
+        add(labelfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         date.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         date.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         date.setOpaque(false);
-        add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 40, 210, 30));
+        add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 210, 30));
 
         tablerequisicion.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tablerequisicion.setModel(modelorequisicion);
@@ -153,10 +156,10 @@ public class Requisicion extends javax.swing.JPanel {
         });
         jScrollPane.setViewportView(tablerequisicion);
 
-        add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 720, 190));
+        add(jScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 160, 570, 190));
 
         labelfondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 722, 360));
+        add(labelfondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 571, 360));
     }// </editor-fold>//GEN-END:initComponents
 
     private void tablerequisicionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablerequisicionKeyPressed
