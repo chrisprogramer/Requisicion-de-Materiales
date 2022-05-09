@@ -154,5 +154,41 @@ public class ReportesDB {
              error = ex.getMessage();
             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
         }
+    }
+     public void ReporteNotaRequisicionSalida(int idnotarequisicion) throws SQLException, JRException, IOException {
+        Connection con = this.EstablecerConexion();
+        Map<String, Object> parametro = new HashMap();
+        parametro.put("idnotarequisicion", idnotarequisicion);
+        String nombrearch = "Sub_ReporteRequisicionSalida";
+        String rutacompleta;
+
+        try {
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
+                     + nombrearch + ".jasper", parametro, con);
+            this.ExportarPDF(jasperPrintWindow, nombrearch, idnotarequisicion);
+            rutacompleta = ruta + nombrearch + " " + idnotarequisicion + ".pdf";
+            this.AbrirPDF(rutacompleta);
+        } catch (JRException ex) {
+             error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+    }
+    public void ReporteNotaRequisicionCompra(int idnotarequisicion) throws SQLException, JRException, IOException {
+        Connection con = this.EstablecerConexion();
+        Map<String, Object> parametro = new HashMap();
+        parametro.put("idnotarequisicion", idnotarequisicion);
+        String nombrearch = "Sub_ReporteRequisicionCompra";
+        String rutacompleta;
+
+        try {
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
+                     + nombrearch + ".jasper", parametro, con);
+            this.ExportarPDF(jasperPrintWindow, nombrearch, idnotarequisicion);
+            rutacompleta = ruta + nombrearch + " " + idnotarequisicion + ".pdf";
+            this.AbrirPDF(rutacompleta);
+        } catch (JRException ex) {
+             error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
     }  
 }

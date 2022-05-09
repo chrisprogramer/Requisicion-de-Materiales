@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" whenNoDataType="AllSectionsNoDetail" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="6dc81f1d-6e87-4e77-b91d-fa299d8723e9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idnotarequisicion" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM fn_rtpdptofecharequisicion($P{idnotarequisicion})]]>
+	</queryString>
+	<field name="Fecha" class="java.sql.Date"/>
+	<field name="Departamento" class="java.lang.String"/>
+	<pageHeader>
+		<band height="24">
+			<staticText>
+				<reportElement x="4" y="4" width="51" height="20" uuid="eb2f441e-418f-4d7e-9a43-d03e4d74f741"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<textField pattern="d MMMMM yyyy">
+				<reportElement x="55" y="4" width="100" height="20" uuid="b008c3ec-fabc-4e11-8435-0090da5a692d"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="350" y="4" width="172" height="20" uuid="70ab27d9-c11d-4505-a482-210e5510133f"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Departamento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="258" y="4" width="92" height="20" uuid="055870ab-5d60-45f2-a3a5-57e87d303fa3"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Departamento:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+</jasperReport>
