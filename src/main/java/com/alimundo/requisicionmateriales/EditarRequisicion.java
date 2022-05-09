@@ -14,6 +14,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
 public class EditarRequisicion extends javax.swing.JDialog {
+    TableColumnModel columnModel;
+    Conexion con = new Conexion();
+    String error;
+    int cantregreq;
+    int seleccion;
+    
     DefaultTableModel modelorequisicion = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int filas, int columnas) {
@@ -24,11 +30,24 @@ public class EditarRequisicion extends javax.swing.JDialog {
             }
         }
     };
-    TableColumnModel columnModel;
-    Conexion con = new Conexion();
-    String error;
-    int cantregreq;
-    int seleccion;
+    
+    public void CancelarRequisicion(int idreq){
+        try{
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            ps = con.EstablecerConexion().prepareStatement("EXEC spu_cancelarequisicion ?");
+            ps.setInt(1, idreq);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Requisición Cancelada con Exito </h3></html>",
+                                        null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
+            }
+        }catch(SQLException ex){
+            error = ex.getMessage();
+            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
+        }
+    }
+
     
     public final void tamanocolumnasrequisicion(JTable table){
         columnModel = table.getColumnModel();
@@ -101,7 +120,7 @@ public class EditarRequisicion extends javax.swing.JDialog {
         labeltitulo.setBackground(new java.awt.Color(255, 255, 255));
         labeltitulo.setFont(new java.awt.Font("Verdana", 1, 22)); // NOI18N
         labeltitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labeltitulo.setText(" EDITAR REQUISICION");
+        labeltitulo.setText(" SELECCIONAR REQUISICION");
         labeltitulo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         labeltitulo.setOpaque(true);
         getContentPane().add(labeltitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 501, 40));
@@ -144,7 +163,17 @@ public class EditarRequisicion extends javax.swing.JDialog {
         this.setCursor(new Cursor(Cursor.WAIT_CURSOR));
         seleccion = this.tablerequisicion.getSelectedRow();
         Principal.idreq = (int) modelorequisicion.getValueAt(seleccion, 0);
-        new ModificarRequisicion().setVisible(true);
+        switch(Principal.botonpress){
+            case 3: new ModificarRequisicion().setVisible(true);
+                    break;
+            case 4: Object[] textoOpciones = {"Si", "No"};
+                    int opc = JOptionPane.showOptionDialog(null, "<html><h3 style=font-family:Verdana New;>¿Esta Seguro que Desea Cancelar la Requisicion?</h3></html>",
+                    null, JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, new Parametros().iconpregunta, textoOpciones, textoOpciones[0]);
+                    if (opc == 0) {
+                        CancelarRequisicion(Principal.idreq);
+                    }    
+                    break;
+        }
         this.dispose();
     }//GEN-LAST:event_botonaceptarActionPerformed
 

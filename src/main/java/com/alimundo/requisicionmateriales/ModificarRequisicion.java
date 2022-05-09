@@ -349,7 +349,7 @@ public class ModificarRequisicion extends javax.swing.JDialog {
                             int j = 1;
                             codmaterial = (String) modelorequisicion.getValueAt(i, 0);
                             try{
-                                cant = Integer.parseInt((String) modelorequisicion.getValueAt(i, 4));
+                                cant = Integer.parseInt(String.valueOf(modelorequisicion.getValueAt(i, 4)));
                             }catch(NumberFormatException nfe){
                                 nulo = true;
                             }    
