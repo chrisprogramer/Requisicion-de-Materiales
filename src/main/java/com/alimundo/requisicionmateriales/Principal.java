@@ -103,6 +103,11 @@ public class Principal extends javax.swing.JFrame {
         labelnbd = new javax.swing.JLabel();
         labelnomempresa = new javax.swing.JLabel();
         labellogo = new javax.swing.JLabel();
+        labelsalir = new javax.swing.JLabel();
+        labelcancelar = new javax.swing.JLabel();
+        labelmodificar = new javax.swing.JLabel();
+        labelnuevo = new javax.swing.JLabel();
+        labelinfo = new javax.swing.JLabel();
         panelopciones = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -155,7 +160,7 @@ public class Principal extends javax.swing.JFrame {
         });
         getContentPane().add(botoncancelarrequisicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 47, 60, 60));
 
-        botonayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/Help_icon-icons.com_55891.png"))); // NOI18N
+        botonayuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pngs48X48/informationwebcircularbuttonsymbol_79860.png"))); // NOI18N
         botonayuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonayudaActionPerformed(evt);
@@ -181,6 +186,26 @@ public class Principal extends javax.swing.JFrame {
 
         labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LOGO ALIMUNDO PEQUE.png"))); // NOI18N
         getContentPane().add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 420, 110));
+
+        labelsalir.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        labelsalir.setText("Salir");
+        getContentPane().add(labelsalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 110, -1, -1));
+
+        labelcancelar.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        labelcancelar.setText("Cancelar");
+        getContentPane().add(labelcancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 110, -1, -1));
+
+        labelmodificar.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        labelmodificar.setText("Modificar");
+        getContentPane().add(labelmodificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 110, -1, -1));
+
+        labelnuevo.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        labelnuevo.setText("Nueva");
+        getContentPane().add(labelnuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(104, 110, -1, -1));
+
+        labelinfo.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        labelinfo.setText("Información");
+        getContentPane().add(labelinfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, -1, -1));
 
         panelopciones.setBackground(new java.awt.Color(0, 102, 153));
         panelopciones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -273,11 +298,16 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel fondo;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel labelcancelar;
     private javax.swing.JLabel labelempresa;
     private javax.swing.JLabel labelicono;
+    private javax.swing.JLabel labelinfo;
     private javax.swing.JLabel labellogo;
+    private javax.swing.JLabel labelmodificar;
     private javax.swing.JLabel labelnbd;
     private javax.swing.JLabel labelnomempresa;
+    private javax.swing.JLabel labelnuevo;
+    private javax.swing.JLabel labelsalir;
     private javax.swing.JLabel labeltitulo;
     private javax.swing.JPanel panelopciones;
     private javax.swing.JLabel verbd;

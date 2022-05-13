@@ -279,11 +279,11 @@
 				<text><![CDATA[Autoriza:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="310" y="62" width="100" height="16" uuid="df2088a3-564e-469b-a092-f6624a6fd63f"/>
+				<reportElement x="296" y="62" width="114" height="16" uuid="df2088a3-564e-469b-a092-f6624a6fd63f"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="Arial" size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Recibe Almacén:]]></text>
+				<text><![CDATA[Entrega Almacén:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="44" width="110" height="16" uuid="8c28da4a-4f94-4767-9683-329fc1d7fd7b"/>
