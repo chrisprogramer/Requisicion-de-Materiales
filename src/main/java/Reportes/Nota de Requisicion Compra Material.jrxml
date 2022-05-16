@@ -254,7 +254,7 @@
 				</textElement>
 				<text><![CDATA[Total Requisición Bs.:]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="#,##0.00">
 				<reportElement x="438" y="0" width="113" height="20" uuid="6539a78f-0201-4a40-8e29-b4da8257a415"/>
 				<textElement textAlignment="Right">
 					<font fontName="Arial" isBold="true"/>
