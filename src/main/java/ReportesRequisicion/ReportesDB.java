@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Reportes;
+package ReportesRequisicion;
 
 import com.alimundo.requisicionmateriales.Parametros;
 import java.awt.Desktop;
@@ -66,7 +66,6 @@ public class ReportesDB {
     public void ExportarPDF(JasperPrint reporte, String nombrerpt, int numnota) throws JRException{
         String rutafinal = null;
         rutafinal = this.RetornaRuta();
-        System.out.println(rutafinal);
         File directorio = new File(rutafinal);
         
         if (directorio.isDirectory()){
@@ -79,7 +78,7 @@ public class ReportesDB {
                 exporter.exportReport();
             }catch(JRRuntimeException ex){
                 JOptionPane.showMessageDialog(null,"<html><h2 style=font-family:Courier New;>EL ARCHIVO ESTA SIENDO USADO POR OTRO PROGRAMA..!!</h2></html>",
-                    "ERROR...",JOptionPane.PLAIN_MESSAGE,new Parametros().iconerror);
+                  "ERROR...",JOptionPane.PLAIN_MESSAGE,new Parametros().iconerror);
             }    
         }else{
             JOptionPane.showMessageDialog(null,"<html><h2 style=font-family:Courier New;>LA RUTA DEL DIRECTORIO NO EXISTE..!!</h2></html>",
@@ -101,7 +100,7 @@ public class ReportesDB {
                 exporter.exportReport();
             }catch(JRRuntimeException ex){
                 JOptionPane.showMessageDialog(null,"<html><h2 style=font-family:Courier New;>EL ARCHIVO ESTA SIENDO USADO POR OTRO PROGRAMA..!!</h2></html>",
-                    "ERROR...",JOptionPane.PLAIN_MESSAGE,new Parametros().iconerror);
+                  "ERROR...",JOptionPane.PLAIN_MESSAGE,new Parametros().iconerror);
             }    
         }else{
             JOptionPane.showMessageDialog(null,"<html><h2 style=font-family:Courier New;>LA RUTA DEL DIRECTORIO NO EXISTE..!!</h2></html>",
@@ -127,7 +126,7 @@ public class ReportesDB {
         String rutacompleta;
 
         try {
-            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("C:\\Users\\AdminSrv\\Documents\\NetBeansProjects\\RequisicionMateriales\\src\\main\\java\\Reportes\\"
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\ReportesRequisicion\\"
                      + nombrearch + ".jasper", parametro, con);
             this.ExportarPDF(jasperPrintWindow, nombrearch, numnota);
             rutacompleta = ruta + nombrearch + " " + numnota + ".pdf";
@@ -145,7 +144,7 @@ public class ReportesDB {
         String rutacompleta;
 
         try {
-            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("C:\\Users\\AdminSrv\\Documents\\NetBeansProjects\\RequisicionMateriales\\src\\main\\java\\Reportes\\"
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\ReportesRequisicion\\"
                      + nombrearch + ".jasper", parametro, con);
             this.ExportarPDF(jasperPrintWindow, nombrearch, numnota);
             rutacompleta = ruta + nombrearch + " " + numnota + ".pdf";
@@ -155,7 +154,7 @@ public class ReportesDB {
             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
         }
     }
-     public void ReporteNotaRequisicionSalida(int idnotarequisicion) throws SQLException, JRException, IOException {
+     public void Sub_ReporteRequisicionSalidaMaterial(int idnotarequisicion) throws SQLException, JRException, IOException {
         Connection con = this.EstablecerConexion();
         Map<String, Object> parametro = new HashMap();
         parametro.put("idnotarequisicion", idnotarequisicion);
@@ -163,7 +162,7 @@ public class ReportesDB {
         String rutacompleta;
 
         try {
-            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\ReportesRequisicion\\"
                      + nombrearch + ".jasper", parametro, con);
             this.ExportarPDF(jasperPrintWindow, nombrearch, idnotarequisicion);
             rutacompleta = ruta + nombrearch + " " + idnotarequisicion + ".pdf";
@@ -173,7 +172,7 @@ public class ReportesDB {
             JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
         }
     }
-    public void ReporteNotaRequisicionCompra(int idnotarequisicion) throws SQLException, JRException, IOException {
+    public void Sub_ReporteRequisicionCompraMaterial(int idnotarequisicion) throws SQLException, JRException, IOException {
         Connection con = this.EstablecerConexion();
         Map<String, Object> parametro = new HashMap();
         parametro.put("idnotarequisicion", idnotarequisicion);
@@ -181,7 +180,7 @@ public class ReportesDB {
         String rutacompleta;
 
         try {
-            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\Reportes\\"
+            JasperPrint jasperPrintWindow = JasperFillManager.fillReport("\\\\192.168.1.100\\ReportesRequisicion\\"
                      + nombrearch + ".jasper", parametro, con);
             this.ExportarPDF(jasperPrintWindow, nombrearch, idnotarequisicion);
             rutacompleta = ruta + nombrearch + " " + idnotarequisicion + ".pdf";

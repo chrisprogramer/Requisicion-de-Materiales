@@ -4,7 +4,7 @@
  */
 package com.alimundo.requisicionmateriales;
 
-import Reportes.ReportesDB;
+import ReportesRequisicion.ReportesDB;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.io.IOException;
@@ -439,20 +439,20 @@ public class NuevaRequisicion extends javax.swing.JDialog {
                                     JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Requisición Generada con Exito </h3></html>",
                                             null, JOptionPane.PLAIN_MESSAGE, new Parametros().iconinformacion);
                                     tiporeq = retornaidtiporequisicion(selecciontipo);
-                                            switch(tiporeq){
-                                                case 1: try {
-                                                            reportesalmacen.ReporteNotaRequisicionCompra(Integer.parseInt(requisicion.labelnid.getText()), Integer.parseInt(requisicion.labelnid.getText()));
-                                                        } catch (JRException | IOException ex) {
-                                                            Logger.getLogger(NuevaRequisicion.class.getName()).log(Level.SEVERE, null, ex);
-                                                        }
-                                                        break;
-                                                case 2: try{
-                                                            reportesalmacen.ReporteNotaRequisicionSalida(Integer.parseInt(requisicion.labelnid.getText()), Integer.parseInt(requisicion.labelnid.getText()));
-                                                        }catch (JRException | IOException ex) {
-                                                            Logger.getLogger(NuevaRequisicion.class.getName()).log(Level.SEVERE, null, ex);
-                                                        }
-                                                        break;
-                                            }
+                                        switch(tiporeq){
+                                            case 1: try {
+                                                        reportesalmacen.ReporteNotaRequisicionCompra(Integer.parseInt(requisicion.labelnid.getText()), Integer.parseInt(requisicion.labelnid.getText()));
+                                                    } catch (JRException | IOException ex) {
+                                                        Logger.getLogger(NuevaRequisicion.class.getName()).log(Level.SEVERE, null, ex);
+                                                    }
+                                                    break;
+                                            case 2: try{
+                                                        reportesalmacen.ReporteNotaRequisicionSalida(Integer.parseInt(requisicion.labelnid.getText()), Integer.parseInt(requisicion.labelnid.getText()));
+                                                    }catch (JRException | IOException ex) {
+                                                        Logger.getLogger(NuevaRequisicion.class.getName()).log(Level.SEVERE, null, ex);
+                                                    }
+                                                    break;
+                                        }
                                 } catch (SQLException ex) {
                                     error = ex.getMessage();
                                     JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);

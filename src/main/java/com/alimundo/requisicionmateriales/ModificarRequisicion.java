@@ -5,7 +5,7 @@
 package com.alimundo.requisicionmateriales;
 
 import Paneles.Requisicion;
-import Reportes.ReportesDB;
+import ReportesRequisicion.ReportesDB;
 import com.toedter.calendar.JTextFieldDateEditor;
 import java.awt.Cursor;
 import java.awt.event.KeyEvent;
@@ -482,9 +482,8 @@ public class ModificarRequisicion extends javax.swing.JDialog {
                                                 //
                                             }
                                         } catch (java.sql.SQLException ex) {
-                                            ex.printStackTrace();
-                                            /*error = ex.getMessage();
-                                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);*/
+                                            error = ex.getMessage();
+                                            JOptionPane.showMessageDialog(null, error, "ERROR", JOptionPane.PLAIN_MESSAGE, new Parametros().iconerror);
                                         }
                                     }
                                     JOptionPane.showMessageDialog(null, "<html><h3 style=font-family:Verdana;>Requisición Modificada con Exito </h3></html>",

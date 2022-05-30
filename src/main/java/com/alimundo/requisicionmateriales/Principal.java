@@ -185,7 +185,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(labelnomempresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 463, 140, 20));
 
         labellogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LOGO ALIMUNDO PEQUE.png"))); // NOI18N
-        getContentPane().add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 420, 110));
+        getContentPane().add(labellogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 420, 110));
 
         labelsalir.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
         labelsalir.setText("Salir");
@@ -214,7 +214,8 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 490, 800, 10));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo.jpg"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 800, 505));
+        fondo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 799, 494));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

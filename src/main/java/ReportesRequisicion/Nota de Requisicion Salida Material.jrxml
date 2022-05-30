@@ -7,7 +7,7 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
-		<defaultValueExpression><![CDATA["C:\\Users\\AdminSrv\\Documents\\NetBeansProjects\\RequisicionMateriales\\src\\main\\java\\Reportes\\"]]></defaultValueExpression>
+		<defaultValueExpression><![CDATA["\\\\192.168.1.100\\ReportesRequisicion\\"]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT * FROM  fn_rtpnotarequisicion ($P{idnotarequisicion})]]>
@@ -57,12 +57,12 @@
 	<pageHeader>
 		<band height="32" splitType="Stretch">
 			<subreport>
-				<reportElement x="0" y="0" width="551" height="32" uuid="9510032a-2d6e-45d2-9ae5-bde56682ba45"/>
+				<reportElement x="0" y="0" width="551" height="32" uuid="94243219-4024-459b-b09e-6a5a97b47b5e"/>
 				<subreportParameter name="idnotarequisicion">
 					<subreportParameterExpression><![CDATA[$F{id_nota}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Sub_ReporteRequisicion.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["\\\\192.168.1.100\\ReportesRequisicion\\Sub_ReporteRequisicionSalidaMaterial.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</pageHeader>
