@@ -5,21 +5,28 @@
  */
 package com.alimundo.requisicionmateriales;
 
+import com.mxrck.autocompleter.TextAutoCompleter;
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.text.DateFormatter;
-
-/**
- *
- * @author Alimundo-SRV
- */
 
 public class FormatoTablas {
 
+    String error;
+    Conexion con = new Conexion();
     DefaultTableCellRenderer cellRendereraligcenter = new DefaultTableCellRenderer();
     DefaultTableCellRenderer cellRendereraligright = new DefaultTableCellRenderer();
     DefaultTableCellRenderer cellRendereraligleft = new DefaultTableCellRenderer();
@@ -66,5 +73,29 @@ public class FormatoTablas {
 
     Object decimalFormat(String montodoublestring) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void addTextField(int column, JTable table)
+    {
+        JTextField textfield = new JTextField();
+        TextAutoCompleter ac;
+        ac = new TextAutoCompleter(textfield);
+        try{    
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            ps = con.EstablecerConexion().prepareStatement("SELECT nom_material FROM Materiales");
+            rs = ps.executeQuery();
+            while (rs.next()){
+                ac.addItem(rs.getString(1));
+            }
+            ps.close();
+        }catch (SQLException ex){
+            error = ex.getMessage();
+            JOptionPane.showMessageDialog(null,error,"ERROR",JOptionPane.PLAIN_MESSAGE,new Parametros().iconerror);
+        }
+        //new CargarComponentes().llenarcombobox(combobox, "SELECT nom_material FROM Materiales");
+        TableColumn tc = table.getColumnModel().getColumn(column);
+        tc.setCellEditor(new DefaultCellEditor(textfield));
+        tc.setCellRenderer(table.getDefaultRenderer(JTextField.class));
     }
 }

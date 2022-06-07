@@ -13,10 +13,6 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author AdminSrv
- */
 public class Requisicion extends javax.swing.JPanel {
 
     DefaultTableModel modelorequisicion = new DefaultTableModel(){
@@ -30,10 +26,10 @@ public class Requisicion extends javax.swing.JPanel {
     
     Conexion con = new Conexion();
     String error;
-    Date fechahoy;
     String fechaformat = "dd/MM/yyyy";
+    Date fechahoy;
     JTextFieldDateEditor editor;
-    
+       
     public Requisicion() {
         initComponents();
         modelorequisicion.setColumnIdentifiers(new Object[]{"","","","",""});
@@ -68,6 +64,7 @@ public class Requisicion extends javax.swing.JPanel {
         new CargarComponentes().llenarcombobox(jComboBoxdpto, "SELECT nom_departamento FROM Departamentos");
         new CargarComponentes().llenarcombobox(jComboBoxtipo,"SELECT Descripcion FROM TipoRequisicion");
         tablerequisicion.getTableHeader().setReorderingAllowed(false);
+        tablerequisicion.putClientProperty("terminateEditOnFocusLost", Boolean.TRUE);
         fechahoy = new Date();
         this.date.setDateFormatString(fechaformat);
         this.date.setDate(fechahoy);

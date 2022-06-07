@@ -286,10 +286,10 @@ public class NuevaRequisicion extends javax.swing.JDialog {
         String medida;
         String selecciontipo;
         double precio;
-        int cant = 0;
+        double cant = 0;
         int tiporeq;
-        int restaexist = 0;
-        int cantstock = 0;
+        double restaexist = 0;
+        double cantstock = 0;
         String valida;
         int contvalida = 0;
         int contvalidares = 0;
@@ -319,7 +319,7 @@ public class NuevaRequisicion extends javax.swing.JDialog {
                             int j = 1;
                             codmaterial = (String) modelorequisicion.getValueAt(i, 0);
                             try{
-                                cant = Integer.parseInt((String) modelorequisicion.getValueAt(i, 4));
+                                cant = Double.parseDouble((String) modelorequisicion.getValueAt(i, 4));
                             }catch(NumberFormatException nfe){
                                 nulo = true;
                             }    
@@ -327,17 +327,17 @@ public class NuevaRequisicion extends javax.swing.JDialog {
                             ResultSet rs = null;
                             ps = con.EstablecerConexion().prepareStatement("EXEC spu_verificarestastock ?,?");
                             ps.setString(1, codmaterial);
-                            ps.setInt(2, cant);
+                            ps.setDouble(2, cant);
                             rs = ps.executeQuery();
                             while (rs.next()) {
-                                restaexist = rs.getInt(1);
+                                restaexist = rs.getFloat(1);
                                 if (restaexist < 0){
                                     try{
                                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornacantexistencia ?");
                                        ps.setString(1, codmaterial);
                                        rs = ps.executeQuery();
                                        while(rs.next()){
-                                           cantstock = rs.getInt(1);
+                                           cantstock = rs.getFloat(1);
                                        }
                                     }catch(SQLException ex){
                                        error = ex.getMessage();
@@ -379,7 +379,7 @@ public class NuevaRequisicion extends javax.swing.JDialog {
                                         } catch (NullPointerException ex) {
                                             precio = 0.00;
                                         }
-                                        cant = Integer.parseInt((String) modelorequisicion.getValueAt(i, 4));
+                                        cant = Double.parseDouble((String) modelorequisicion.getValueAt(i, 4));
                                         arrayreq = new DetalleRequisicion();
                                         arrayreq.setidrequisicion(idrequisicion);
                                         arrayreq.setcodmaterial(codmaterial);
@@ -410,7 +410,7 @@ public class NuevaRequisicion extends javax.swing.JDialog {
                                             ps.setString(3, arrayrequisicion.get(i).getnommaterial());
                                             ps.setString(4, arrayrequisicion.get(i).getmedida());
                                             ps.setDouble(5, arrayrequisicion.get(i).getprecio());
-                                            ps.setInt(6, arrayrequisicion.get(i).getcant());
+                                            ps.setDouble(6, arrayrequisicion.get(i).getcant());
                                             rs = ps.executeQuery();
                                             while (rs.next()) {
                                                 //
@@ -426,7 +426,7 @@ public class NuevaRequisicion extends javax.swing.JDialog {
                                             ps.setString(1, arrayrequisicion.get(i).getcodmaterial());
                                             ps.setString(2, arrayrequisicion.get(i).getmedida());
                                             ps.setDouble(3, arrayrequisicion.get(i).getprecio());
-                                            ps.setInt(4, arrayrequisicion.get(i).getcant());
+                                            ps.setDouble(4, arrayrequisicion.get(i).getcant());
                                             rs = ps.executeQuery();
                                             while (rs.next()) {
                                                 //

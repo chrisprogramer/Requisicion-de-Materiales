@@ -30,7 +30,7 @@ public class Principal extends javax.swing.JFrame {
     JMenuBar mainmenu;
     public static int idreq;
     public static int botonpress;
-    
+  
     public Principal() {
         
         this.BarMenu = new Menus();

@@ -130,8 +130,8 @@ public class ModificarRequisicion extends javax.swing.JDialog {
             ps.setInt(1,Principal.idreq);
             rs = ps.executeQuery();
             while(rs.next()){
-                int cantidad;
-                cantidad = rs.getInt(5);//String.valueOf(cantidad)
+                double cantidad;
+                cantidad = rs.getDouble(5);//String.valueOf(cantidad)
                 this.modelorequisicion.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getDouble(4), cantidad});
             }
         }catch(SQLException ex){
@@ -302,9 +302,9 @@ public class ModificarRequisicion extends javax.swing.JDialog {
         int numregreq;
         int contvalida = 0;
         int tiporeq;
-        int cant = 0;
-        int restaexist = 0;
-        int cantstock = 0;
+        double cant = 0;
+        double restaexist = 0;
+        double cantstock = 0;
         int contvalidares = 0;
         int idrequisicion;
         double precio;
@@ -349,23 +349,23 @@ public class ModificarRequisicion extends javax.swing.JDialog {
                             int j = 1;
                             codmaterial = (String) modelorequisicion.getValueAt(i, 0);
                             try{
-                                cant = Integer.parseInt(String.valueOf(modelorequisicion.getValueAt(i, 4)));
+                                cant = Double.parseDouble(String.valueOf(modelorequisicion.getValueAt(i, 4)));
                             }catch(NumberFormatException nfe){
                                 nulo = true;
                             }    
                             ps = con.EstablecerConexion().prepareStatement("EXEC spu_verificarestastock ?,?");
                             ps.setString(1, codmaterial);
-                            ps.setInt(2, cant);
+                            ps.setDouble(2, cant);
                             rs = ps.executeQuery();
                             while (rs.next()) {
-                                restaexist = rs.getInt(1);
+                                restaexist = rs.getDouble(1);
                                 if (restaexist < 0){
                                     try{
                                        ps = con.EstablecerConexion().prepareStatement("EXEC spu_retornacantexistencia ?");
                                        ps.setString(1, codmaterial);
                                        rs = ps.executeQuery();
                                        while(rs.next()){
-                                           cantstock = rs.getInt(1);
+                                           cantstock = rs.getDouble(1);
                                        }
                                     }catch(SQLException ex){
                                        error = ex.getMessage();
@@ -405,7 +405,7 @@ public class ModificarRequisicion extends javax.swing.JDialog {
                                         } catch (NullPointerException | ClassCastException ex) {
                                             precio = 0.00;
                                         }
-                                        cant = Integer.parseInt(String.valueOf(modelorequisicion.getValueAt(i, 4)));
+                                        cant = Double.parseDouble(String.valueOf(modelorequisicion.getValueAt(i, 4)));
                                         arrayreq = new DetalleRequisicion();
                                         arrayreq.setidrequisicion(idrequisicion);
                                         arrayreq.setcodmaterial(codmaterial);
@@ -448,7 +448,7 @@ public class ModificarRequisicion extends javax.swing.JDialog {
                                             ps.setString(3, arrayrequisicion.get(i).getnommaterial());
                                             ps.setString(4, arrayrequisicion.get(i).getmedida());
                                             ps.setDouble(5, arrayrequisicion.get(i).getprecio());
-                                            ps.setInt(6, arrayrequisicion.get(i).getcant());
+                                            ps.setDouble(6, arrayrequisicion.get(i).getcant());
                                             rs = ps.executeQuery();
                                             while (rs.next()) {
                                                 //
@@ -476,7 +476,7 @@ public class ModificarRequisicion extends javax.swing.JDialog {
                                             ps.setString(2, arrayrequisicion.get(i).getcodmaterial());
                                             ps.setString(3, arrayrequisicion.get(i).getmedida());
                                             ps.setDouble(4, arrayrequisicion.get(i).getprecio());
-                                            ps.setInt(5, arrayrequisicion.get(i).getcant());
+                                            ps.setDouble(5, arrayrequisicion.get(i).getcant());
                                             rs = ps.executeQuery();
                                             while (rs.next()) {
                                                 //

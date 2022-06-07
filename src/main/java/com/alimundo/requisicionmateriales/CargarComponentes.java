@@ -66,7 +66,6 @@ public class CargarComponentes {
        Conexion con = new Conexion();
        String error;
          try{
-            
             PreparedStatement ps = null;
             ResultSet rs = null;
             ps=con.EstablecerConexion().prepareStatement(sql);

@@ -13,9 +13,9 @@ import javax.swing.ButtonGroup;
 public class ValidarDatos {
 
     public static boolean isNumeric(String cadena) {
-        int numero; 
+        double numero; 
         try {
-            numero = Integer.parseInt(cadena);
+            numero = Double.parseDouble(cadena);
             return numero > 0;
         }catch (NumberFormatException nfe) {
             return false;

@@ -15,7 +15,7 @@ public class DetalleRequisicion {
     private String nommaterial;
     private String medida;
     private double precio;
-    private int cant;
+    private double cant;
     
     public void setidrequisicion (int idrequisicion){
        this.idrequisicion = idrequisicion;
@@ -49,11 +49,11 @@ public class DetalleRequisicion {
         return medida;
     }
     
-    public void setcant (int cant) {
+    public void setcant (double cant) {
         this.cant = cant;
     }
 
-    public int getcant() {
+    public double getcant() {
         return cant;
     }
     

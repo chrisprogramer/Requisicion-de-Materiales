@@ -17,7 +17,7 @@
 	<field name="Material" class="java.lang.String"/>
 	<field name="Medida" class="java.lang.String"/>
 	<field name="precio" class="java.lang.Double"/>
-	<field name="Cantidad" class="java.lang.Integer"/>
+	<field name="Cantidad" class="java.math.BigDecimal"/>
 	<field name="Total" class="java.lang.Double"/>
 	<variable name="Total_1" class="java.lang.Double" resetType="Column" calculation="Sum">
 		<variableExpression><![CDATA[$F{Total}]]></variableExpression>
@@ -156,7 +156,7 @@
 	</columnHeader>
 	<detail>
 		<band height="16" splitType="Stretch">
-			<textField pattern="###0">
+			<textField pattern="###0.00">
 				<reportElement x="438" y="0" width="46" height="16" uuid="154b998f-5ee9-48d2-b3f7-3407f5854a9f"/>
 				<box>
 					<pen lineWidth="1.0"/>
