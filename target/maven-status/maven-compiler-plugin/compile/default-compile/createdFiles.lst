@@ -23,6 +23,7 @@ com\alimundo\requisicionmateriales\ModificarRequisicion.class
 com\alimundo\requisicionmateriales\Principal$6.class
 Paneles\Requisicion$2.class
 com\alimundo\requisicionmateriales\ModificarRequisicion$3.class
+com\alimundo\requisicionmateriales\tabla$2.class
 com\alimundo\requisicionmateriales\Menus.class
 com\alimundo\requisicionmateriales\EditarRequisicion.class
 com\alimundo\requisicionmateriales\Fecha.class
@@ -38,9 +39,11 @@ Paneles\Requisicion.class
 com\alimundo\requisicionmateriales\DetalleRequisicion.class
 com\alimundo\requisicionmateriales\EditarRequisicion$4.class
 com\alimundo\requisicionmateriales\NuevaRequisicion.class
+com\alimundo\requisicionmateriales\tabla$1.class
 com\alimundo\requisicionmateriales\NuevaRequisicion$5.class
 com\alimundo\requisicionmateriales\Ayuda$2.class
 com\alimundo\requisicionmateriales\ModificarRequisicion$6.class
 com\alimundo\requisicionmateriales\Principal$4.class
+com\alimundo\requisicionmateriales\tabla.class
 com\alimundo\requisicionmateriales\Reloj.class
 com\alimundo\requisicionmateriales\EditarRequisicion$1.class

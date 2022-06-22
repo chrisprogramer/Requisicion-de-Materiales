@@ -51,7 +51,7 @@ public class ReportesDB {
     
     public String RetornaRuta(){
         try{
-           ps = this.EstablecerConexion().prepareStatement("EXEC spu_devuelverutaRpts"); 
+           ps = this.EstablecerConexion().prepareStatement("EXEC spu_devuelverutaRptsServidor"); 
            rs = ps.executeQuery();
             while (rs.next()){
                 ruta = (rs.getString(1));
